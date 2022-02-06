@@ -29,21 +29,26 @@ public class App {
         }
 
         try {
+
+            if ((a - C <= 0) && (n - C >= 0)) {
+                throw new ArithmeticException("Division by zero predicted (i+C = 0).");
+            }
+            if (b <= 0 && m >= 0) {
+                throw new ArithmeticException("Division by zero predicted (j = 0).");
+            }
+
             float s = 0;
+
             for (float i = a; i <= n; i++) {
-                if (i + C == 0) {
-                    throw new ArithmeticException("Division by zero (i+C = 0).");
-                }
                 for (float j = b; j <= m; j++) {
-                    if (j == 0) {
-                        throw new ArithmeticException("Division by zero (j = 0).");
-                    }
                     s += (i / j) / (i - C);
                 }
             }
-            System.out.println("Computation done. Result: " + s);
+
+            System.out.println(s);
+
         } catch (Exception e) {
-            System.out.println("Computation interrupted. Reason: " + e.getMessage());
+            throw new RuntimeException("Computation interrupted. Reason: " + e.getMessage());
         }
 
     }
